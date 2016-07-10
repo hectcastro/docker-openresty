@@ -1,5 +1,8 @@
 # docker-openresty
 
+[![Build Status](https://travis-ci.org/hectcastro/docker-openresty.svg?branch=feature%2Fhmc%2Ftravis)](https://travis-ci.org/hectcastro/docker-openresty)
+[![ImageLayers](https://imagelayers.io/badge/hectcastro/openresty:latest.svg)](https://imagelayers.io/?images=hectcastro/openresty:latest)
+
 This project contains the source files for a container image that builds on top of the [official OpenResty container image](https://github.com/openresty/docker-openresty), but makes it function a bit more like the [official Nginx container image](https://github.com/nginxinc/docker-nginx) by:
 
 - Creating an `nginx` user and group

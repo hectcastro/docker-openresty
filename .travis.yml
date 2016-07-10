@@ -1,0 +1,23 @@
+sudo: required
+
+language: bash
+
+services:
+  - docker
+
+install:
+  - docker build -t hectcastro/openresty:${TRAVIS_COMMIT:0:7} .
+
+script:
+  - docker run --rm hectcastro/openresty:${TRAVIS_COMMIT:0:7} -v
+
+after_success:
+  - docker login -e "${DOCKER_EMAIL}" -u "${DOCKER_USERNAME}" -p "${DOCKER_PASSWORD}"
+  - if [ "${TRAVIS_BRANCH}" == "develop" ]; then
+    docker push hectcastro/openresty:${TRAVIS_COMMIT:0:7};
+    docker tag hectcastro/openresty:${TRAVIS_COMMIT:0:7} hectcastro/openresty:latest;
+    docker push hectcastro/openresty:latest;
+    fi
+  - if [ -n "${TRAVIS_TAG}" ]; then
+    docker push hectcastro/openresty:${TRAVIS_TAG};
+    fi
